@@ -14,9 +14,6 @@ namespace addressbook_web_tests
         [Test]
         public void ContactCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin","secret")) ;
-            app.Navigator.GoToContactCreationPage();
             ContactData contact = new ContactData("Ася");
             contact.Middlename = "Павлова";
             contact.Lastname = "Хомякова";
@@ -27,9 +24,26 @@ namespace addressbook_web_tests
             contact.Bday = "16";
             contact.Bmonth = "January";
             contact.Byear = "1900";
-            app.Contacts.FillContactForm(contact);
-            app.Contacts.SubmitContactCreation();
-            app.Contacts.ReturnToContactPage();
+
+            app.Contacts.Create(contact);
+        }
+
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+            ContactData contact = new ContactData("");
+            contact.Middlename = "";
+            contact.Lastname = "";
+            contact.Title = "";
+            contact.Address = "";
+            contact.Mobile = "";
+            contact.Email = "";
+            contact.Bday = "-";
+            contact.Bmonth = "-";
+            contact.Byear = "1989";
+
+            app.Contacts.Create(contact);
+                
         }
 
     }

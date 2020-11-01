@@ -25,11 +25,20 @@ namespace addressbook_web_tests
             baseURL = "http://localhost/";
             
 
-            LoginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            GroupHelper = new GroupHelper(driver);
-            ContactHelper = new ContactHelper(driver);
+            LoginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            GroupHelper = new GroupHelper(this);
+            ContactHelper = new ContactHelper(this);
         }
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+        }
+
 
         public void Stop ()
         {
@@ -42,6 +51,8 @@ namespace addressbook_web_tests
                 // Ignore errors if unable to close the browser
             }
         }
+
+
         public LoginHelper Auth
         {
             get
@@ -49,6 +60,7 @@ namespace addressbook_web_tests
                 return LoginHelper;
             }
         }
+
 
         public NavigationHelper Navigator
         {
@@ -65,6 +77,8 @@ namespace addressbook_web_tests
                 return GroupHelper;
             }
         }
+
+
         public ContactHelper Contacts
         {
             get
@@ -72,6 +86,8 @@ namespace addressbook_web_tests
                 return ContactHelper;
             }
         }
+
+        
 
     }
 }

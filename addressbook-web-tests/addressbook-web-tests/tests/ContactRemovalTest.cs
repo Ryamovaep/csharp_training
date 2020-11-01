@@ -42,12 +42,12 @@ namespace addressbook_web_tests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
+            
             app.Navigator.GoToContactsPage();
-            app.Contacts.SelectContact("1");
-            app.Contacts.RemoveContact();
-            app.Contacts.ReturnToContactPage();
+            app.Contacts
+                .SelectContact("1")
+                .RemoveContact()
+                .ReturnToContactPage();
 
         }
 
