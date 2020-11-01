@@ -26,11 +26,22 @@ namespace addressbook_web_tests
         {
             Manager.Navigator.GoToContactCreationPage();
             FillContactForm(contact);
-            //SelectContact("1");
-            //RemoveContact();
             SubmitContactCreation();
             return this;
         }
+
+        public ContactHelper Modify(string c, ContactData newData)
+        {
+            Manager.Navigator.GoToContactsPage();
+            SelectContact(c);
+            InitContactModification();
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToContactPage();
+            return this;
+        }
+
+        
 
         public ContactHelper GoToContactsPage()
         {
@@ -94,8 +105,8 @@ namespace addressbook_web_tests
 
         public ContactHelper SelectContact(string index)
         {
+            
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
         }
@@ -128,6 +139,19 @@ namespace addressbook_web_tests
             {
                 acceptNextAlert = true;
             }
+        }
+        public ContactHelper SubmitContactModification()
+        {            
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification()
+        {
+            acceptNextAlert = true;
+            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
         }
     }
 }
