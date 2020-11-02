@@ -22,6 +22,7 @@ namespace addressbook_web_tests
 
         }
 
+
         public void GoToContactCreationPage()
         {
             driver.Navigate().GoToUrl(baseURL + "addressbook/edit.php");
@@ -29,7 +30,7 @@ namespace addressbook_web_tests
 
         public void GoToHomePage()
         {
-            driver.Navigate().GoToUrl(baseURL + "addressbook/group.php");
+            driver.Navigate().GoToUrl(baseURL + "addressbook/");
         }
 
        public void GoToGroupsPage()
