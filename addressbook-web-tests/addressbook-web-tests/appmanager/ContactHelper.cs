@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -57,38 +58,49 @@ namespace addressbook_web_tests
      
         public ContactHelper FillContactForm(ContactData contact)
         {
+            
+            Type(By.Name("firstname"), contact.Firstname);
+            Type(By.Name("middlename"), contact.Middlename);
+            Type(By.Name("lastname"), contact.Lastname);
+            Type(By.Name("title"), contact.Title);
+            Type(By.Name("address"), contact.Address);
+            Type(By.Name("mobile"), contact.Mobile);
+            Type(By.Name("email"), contact.Email);
+            
+             
+            
+            //driver.FindElement(By.Name("bday")).Click();
+            //new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
+            //driver.FindElement(By.Name("bday")).Click();
+            SetDayOrMonth("bday", contact.Bday);
 
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(contact.Middlename);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
-            driver.FindElement(By.Name("title")).Click();
-            driver.FindElement(By.Name("title")).Clear();
-            driver.FindElement(By.Name("title")).SendKeys(contact.Title);
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-            driver.FindElement(By.Name("mobile")).Click();
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(contact.Mobile);
-            driver.FindElement(By.Name("email")).Click();
-            driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys(contact.Email);
-            driver.FindElement(By.Name("bday")).Click();
-            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
-            driver.FindElement(By.Name("bday")).Click();
-            driver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
-            driver.FindElement(By.Name("bmonth")).Click();
-            driver.FindElement(By.Name("byear")).Click();
-            driver.FindElement(By.Name("byear")).Clear();
-            driver.FindElement(By.Name("byear")).SendKeys(contact.Byear);
+            //driver.FindElement(By.Name("bmonth")).Click();
+            //new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
+            //driver.FindElement(By.Name("bmonth")).Click();
+            SetDayOrMonth("bmonth", contact.Bmonth);
+
+            //driver.FindElement(By.Name("byear")).Click();
+            //driver.FindElement(By.Name("byear")).Clear();
+            //driver.FindElement(By.Name("byear")).SendKeys(contact.Byear);
+            SetYear("byear", contact.Byear);
             return this;
         }
+
+        public void SetDayOrMonth(string type, string text)
+        {
+            driver.FindElement(By.Name(type)).Click();
+            new SelectElement(driver.FindElement(By.Name(type))).SelectByText(text);
+            driver.FindElement(By.Name(type)).Click();
+        }
+
+        public void SetYear(string type, string text)
+        {
+            driver.FindElement(By.Name(type)).Click();
+            driver.FindElement(By.Name(type)).Clear();
+            driver.FindElement(By.Name(type)).SendKeys(text);
+        }
+       
+
         public ContactHelper SubmitContactCreation()
         {
 

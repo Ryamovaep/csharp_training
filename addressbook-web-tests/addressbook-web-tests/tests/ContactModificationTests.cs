@@ -15,15 +15,15 @@ namespace addressbook_web_tests
         public void ContactModificationTest()
         {
             ContactData newData = new ContactData("Анна-Мария");
-            newData.Middlename = "Захарова";
-            newData.Lastname = "Иль";
-            newData.Title = "Задание 9";
-            newData.Address = "Пермь, ул.Профсоюзная 100";
-            newData.Mobile = "9252583243";
-            newData.Email = "dgokonda2@bk.bankru";
-            newData.Bday = "20";
-            newData.Bmonth = "January";
-            newData.Byear = "1991";
+            newData.Middlename = "null";
+            newData.Lastname = "null";
+            newData.Title = "null";
+            newData.Address = "null";
+            newData.Mobile = "null";
+            newData.Email = "null";
+            newData.Bday = "-";
+            newData.Bmonth = "-";
+            newData.Byear = "null";
 
             app.Contacts.Modify("1", newData);
             

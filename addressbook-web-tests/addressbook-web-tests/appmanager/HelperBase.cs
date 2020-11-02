@@ -5,13 +5,19 @@ namespace addressbook_web_tests
 {
     public class HelperBase
     {
-        
+
         protected IWebDriver driver;
         protected ApplicationManager Manager;
         public HelperBase(ApplicationManager manager)
         {
             this.driver = manager.Driver;
             Manager = manager;
+        }
+
+        public void Type(By locator, string text)
+        {
+            driver.FindElement(locator).Clear();
+            driver.FindElement(locator).SendKeys(text);
         }
     }
 }
