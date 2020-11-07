@@ -38,7 +38,6 @@ namespace addressbook_web_tests
             InitContactModification();
             FillContactForm(newData);
             SubmitContactModification();
-            ReturnToContactPage();
             return this;
         }
 
@@ -108,12 +107,6 @@ namespace addressbook_web_tests
             return this;
         }
 
-        public ContactHelper ReturnToContactPage()
-        {
-
-            driver.FindElement(By.LinkText("Logout")).Click();
-            return this;
-        }
 
         public ContactHelper SelectContact(string index)
         {

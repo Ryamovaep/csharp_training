@@ -8,7 +8,7 @@ using System.Threading;
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class ContactCreationTests: TestBase
+    public class ContactCreationTests:  AuthTestBase
     {
         
         [Test]
@@ -24,6 +24,7 @@ namespace addressbook_web_tests
             contact.Bday = "16";
             contact.Bmonth = "January";
             contact.Byear = "1900";
+
 
             app.Contacts.Create(contact);
         }

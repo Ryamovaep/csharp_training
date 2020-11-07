@@ -2,12 +2,13 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using addressbook_web_tests;
 using NUnit.Framework;
 
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class GroupCreationTests: TestBase
+    public class GroupCreationTests: AuthTestBase
     {
        
         [Test]

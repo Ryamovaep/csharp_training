@@ -9,7 +9,7 @@ using System.Threading;
 namespace addressbook_web_tests 
 {
     [TestFixture]
-    public class ContactRemovalTests : TestBase
+    public class ContactRemovalTests : AuthTestBase
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -21,12 +21,11 @@ namespace addressbook_web_tests
 
         [Test]
         public void ContactRemovalTest()
-        {           
+        {
             app.Navigator.GoToContactsPage();
             app.Contacts
                 .SelectContact("1")
-                .RemoveContact()
-                .ReturnToContactPage();
+                .RemoveContact();
 
         }
 
