@@ -41,7 +41,18 @@ namespace addressbook_web_tests
             return this;
         }
 
-        
+        internal List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            Manager.Navigator.GoToContactsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name='entry']"));
+            foreach (IWebElement element in elements)
+            {
+
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
+        }
 
         public ContactHelper GoToContactsPage()
         {

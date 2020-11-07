@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -25,8 +26,12 @@ namespace addressbook_web_tests
             contact.Bmonth = "January";
             contact.Byear = "1900";
 
+            List<ContactData> OldContacts = app.Contacts.GetContactList();
 
             app.Contacts.Create(contact);
+
+            List<ContactData> NewContacts = app.Contacts.GetContactList();
+            Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
         }
 
         [Test]
@@ -43,9 +48,34 @@ namespace addressbook_web_tests
             contact.Bmonth = "-";
             contact.Byear = "1989";
 
+            List<ContactData> OldContacts = app.Contacts.GetContactList();
+
             app.Contacts.Create(contact);
-                
+
+            List<ContactData> NewContacts = app.Contacts.GetContactList();
+            Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
         }
 
+        [Test]
+        public void BadNameContactCreationTest()
+        {
+            ContactData contact = new ContactData("a'a");
+            contact.Middlename = "";
+            contact.Lastname = "";
+            contact.Title = "";
+            contact.Address = "";
+            contact.Mobile = "";
+            contact.Email = "";
+            contact.Bday = "-";
+            contact.Bmonth = "-";
+            contact.Byear = "1989";
+
+            List<ContactData> OldContacts = app.Contacts.GetContactList();
+
+            app.Contacts.Create(contact);
+
+            List<ContactData> NewContacts = app.Contacts.GetContactList();
+            Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
+        }
     }
 }
