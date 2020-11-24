@@ -18,7 +18,26 @@ namespace addressbook_web_tests
             newData.Header = "null";
             newData.Footer = "null";
 
-            app.Groups.Modify(1, newData);
+            List<GroupData> OldGroups = app.Groups.GetGroupList();
+
+            if (OldGroups.Count == 0)
+
+            {
+                GroupData group = new GroupData("aaa");
+                group.Header = "ddd";
+                group.Footer = "fff";
+
+                app.Groups.Create(group);
+
+            }
+
+            app.Groups.Modify(0, newData);
+
+            List<GroupData> NewGroups = app.Groups.GetGroupList();
+            OldGroups[0].Name=newData.Name;
+            OldGroups.Sort();
+            NewGroups.Sort();
+            Assert.AreEqual(OldGroups, NewGroups);
 
         }
     }

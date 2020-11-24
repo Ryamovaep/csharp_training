@@ -56,26 +56,26 @@ namespace addressbook_web_tests
             Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
         }
 
-        [Test]
-        public void BadNameContactCreationTest()
-        {
-            ContactData contact = new ContactData("a'a");
-            contact.Middlename = "";
-            contact.Lastname = "";
-            contact.Title = "";
-            contact.Address = "";
-            contact.Mobile = "";
-            contact.Email = "";
-            contact.Bday = "-";
-            contact.Bmonth = "-";
-            contact.Byear = "1989";
+        //[Test]
+        //public void BadNameContactCreationTest()
+        //{
+        //    ContactData contact = new ContactData("a'a");
+        //    contact.Middlename = "";
+        //    contact.Lastname = "";
+        //    contact.Title = "";
+        //    contact.Address = "";
+        //    contact.Mobile = "";
+        //    contact.Email = "";
+        //    contact.Bday = "-";
+        //    contact.Bmonth = "-";
+        //    contact.Byear = "1989";
 
-            List<ContactData> OldContacts = app.Contacts.GetContactList();
+        //    List<ContactData> OldContacts = app.Contacts.GetContactList();
 
-            app.Contacts.Create(contact);
+        //    app.Contacts.Create(contact);
 
-            List<ContactData> NewContacts = app.Contacts.GetContactList();
-            Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
-        }
+        //    List<ContactData> NewContacts = app.Contacts.GetContactList();
+        //    Assert.AreEqual(OldContacts.Count + 1, NewContacts.Count);
+        //}
     }
 }

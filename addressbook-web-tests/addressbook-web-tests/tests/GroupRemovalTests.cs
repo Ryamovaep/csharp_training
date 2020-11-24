@@ -6,6 +6,7 @@ using addressbook_web_tests;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using System.Collections.Generic;
 
 namespace addressbook_web_tests
 {
@@ -21,8 +22,25 @@ namespace addressbook_web_tests
         [Test]
         public void GroupRemovalTest()
         {
-            app.Groups.Remove(1);
+            List<GroupData> OldGroups = app.Groups.GetGroupList();
 
+            if (OldGroups.Count == 0)
+
+            { 
+                 GroupData group = new GroupData("aaa");
+                 group.Header = "ddd";
+                 group.Footer = "fff";
+
+                app.Groups.Create(group);
+                
+            }
+
+            app.Groups.Remove(0);
+
+            List<GroupData> NewGroups = app.Groups.GetGroupList();
+
+            OldGroups.RemoveAt(0);
+            Assert.AreEqual(OldGroups, NewGroups);
         }
     }
 }

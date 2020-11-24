@@ -66,7 +66,7 @@ namespace addressbook_web_tests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
 
@@ -112,7 +112,7 @@ namespace addressbook_web_tests
 
         public GroupHelper InitGroupModification()
         {
-            driver.FindElement(By.LinkText("groups")).Click();
+            //driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
